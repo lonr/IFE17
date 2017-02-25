@@ -1,17 +1,24 @@
 body {
-    /*font-size: 22px;*/
-    /*font-size: 16px;*/
-    font-size: 40px;
     font-family: sans-serif;
     color: steelblue;
 }
 
-h1 {
+h1, h2 {
     text-align: center;
     font-weight: normal;
 }
 
+h1 {
+    font-size: 32px;
+}
+
+a {
+    text-decoration: none;
+    color: steelblue;
+}
+
 main {
+    font-size: 40px;    
     text-align: center;
 }
 
