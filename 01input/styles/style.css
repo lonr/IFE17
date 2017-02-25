@@ -35,7 +35,7 @@ input[type="radio"]:checked + label {
     background-position: 0 -1em;
 }
 
-input[type="checkbox"] + label:before {
+input[type="checkbox"] + label::before {
     content: "";
     display: inline-block;
     width: 1em;
@@ -45,6 +45,6 @@ input[type="checkbox"] + label:before {
     background: url(../images/icons.png) 0 -2em/1em;
 }
 
-input[type="checkbox"]:checked + label:before {
+input[type="checkbox"]:checked + label::before {
     background-position: 0 -3em;
 }
