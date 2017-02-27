@@ -273,10 +273,12 @@ h2 .yellow {
     line-height: 16px;
 }
 
-#report > p:first-of-type::first-letter {
-    font-family: "Microsoft YaHei", sans-serif;
-    margin-right: 0.2rem;
+#report > p:first-of-type::before {
+    content: "前";
     float: left;
+    margin-right: 0.2rem;
+    margin-bottom: 0.2rem;
+    font-family: "Microsoft YaHei", sans-serif;
     font-size: 70px;
     color: #f5e327;
 }
@@ -357,7 +359,6 @@ h2 .yellow {
     border: transparent solid;
     border-width: 0.5em 0.31em;
     border-bottom-color: #125;
-    line-height: 0;
 }
 
 .quote ul > li > .q {
@@ -376,7 +377,6 @@ h2 .yellow {
 .quote ul > li > .author {
     float: right;
     font-size: 12px;
-    vertical-align: bottom;
     line-height: 19.2px;
     font-style: italic;
 }
