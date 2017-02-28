@@ -136,11 +136,11 @@ a {
 }
 
 .cicle {
-    background: url(../images/icons.png) -91px -1px no-repeat;
+    background: url(../images/icons.png) -91px 0px no-repeat;
 }
 
 .flag {
-    background: url(../images/icons.png) -93px -45px no-repeat;  
+    background: url(../images/icons.png) -93px -44px no-repeat;  
     
 }
 
@@ -175,7 +175,7 @@ a {
 }
 
 .search {
-    min-height: 21em;
+    min-height: 24em;
     padding-top: 3em;
     padding-bottom: 6em;
     color: #fff;
@@ -238,7 +238,7 @@ select, button, input {
     content: "";
     position: absolute;
     right: 0.5em;
-    top: 0.7em;
+    top: 1em;
     width: 16px;
     height: 16px;
     background: #bf4e48 url(../images/icons.png) -162px -106px no-repeat;
@@ -248,7 +248,7 @@ select, button, input {
     display: none;
 }
 
-.search form div:hover {
+.search form div:hover, .search div ul:hover {
     outline: solid 2px #bf4e48;
 }
 
@@ -278,7 +278,7 @@ select, button, input {
 }
 
 .search div .checked::before, .search div li:hover::before {
-    background: url(../images/icons.png) -164px -108px no-repeat;
+    background: url(../images/icons.png) -164px -86px no-repeat;
 }
 
 .search form > button {
@@ -352,7 +352,7 @@ select, button, input {
 
 .carousel figure img {
     width: 100%;
-    vertical-align: top;
+    vertical-align: bottom;
 }
 
 .carousel figcaption {
@@ -392,15 +392,43 @@ select, button, input {
 
 .carousel > div {
     flex: 1;
+    position: relative;
     display: flex;
     flex-flow: column;
     align-items: center;
     justify-content: center;
 }
 
+.carousel > div::before {
+    content: "";
+    position: absolute;
+    top: calc(50% - 1em);
+    left: -3.4em;
+    width: 3.4em;
+    height: 2em;
+    border: transparent solid;
+    border-width: 1em 1.7em;
+    border-right-color: #fff;
+}
+
 .carousel div h3 {
     margin-bottom: 1em;
     font-size: 1.5em;
+}
+
+.carousel div h3 .slash {
+    display: inline-block;
+    width: 0.9em;
+    height: 0.9em;
+    margin: 0 0.1em;
+    text-align: center;
+    vertical-align: -0.2em;
+    color: transparent;
+    background: linear-gradient(-45deg, transparent 48%, #363636 0, #363636 52%, transparent 0);
+}
+
+.carousel div h3 .num {
+    color: #bf4e48;
 }
 
 .carousel div p {
@@ -431,7 +459,6 @@ select, button, input {
     height: 0.7em;
     border: #8c8c8c 2px solid;
     border-radius: 50%;
-    /*list-style: none;*/
 }
 
 .carousel div ol .checked, .carousel div ol li:hover {
@@ -451,6 +478,19 @@ select, button, input {
 
 .white {
     flex: 1;
+    position: relative;
+}
+
+.white::after {
+    content: "";
+    position: absolute;
+    top: calc(50% - 1rem);
+    right: -3.4rem;
+    width: 3.4rem;
+    height: 2rem;
+    border: transparent solid;
+    border-width: 1rem 1.7rem;
+    border-left-color: #fff;
 }
 
 .red, .white {

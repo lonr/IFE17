@@ -1,0 +1,153 @@
+body {
+    margin: 0;
+    font-family: sans-serif;
+    color: steelblue;
+}
+
+.clearfix::before, .clearfix::after {
+    content: "";
+    display: table;
+}
+
+.clearfix::after {
+    clear: both;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+h1, h2 {
+    text-align: center;
+    font-weight: normal;
+}
+
+.row {
+    width: 100%;
+}
+
+.float .row {
+    padding-right: 20px;
+}
+
+.flex .row {
+    padding-right: 20px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.grid .row {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-gap: 20px;
+    padding: 0 20px 20px;
+}
+
+@supports not (display: grid) {
+    .grid h2::after {
+        content: " 但此浏览器不支持";
+    }
+
+    .grid .row {
+        display: none;
+    }
+}
+
+.col {
+    border: solid #999 1px;
+    line-height: 48px;
+    text-align: center;
+    background: #eee;
+}
+
+.float .col, .flex .col {
+    float: left;
+    margin-bottom: 20px;    
+    margin-left: 20px;    
+}
+
+@media (min-width: 768px) {
+    .float .col-l-1, .flex .col-l-1 {
+        width: calc(8.33% - 20px);
+    }
+
+    .float .col-l-2, .flex .col-l-2 {
+        width: calc(16.66% - 20px);
+    }
+
+    .float .col-l-3, .flex .col-l-3 {
+        width: calc(25% - 20px);
+    }
+
+    .float .col-l-4, .flex .col-l-4 {
+        width: calc(33.33% - 20px);
+    }
+
+    .float .col-l-6, .flex .col-l-6 {
+        width: calc(50% - 20px);
+    }
+
+    .grid .col-l-1 {
+        grid-column: auto;
+    }
+
+    .grid .col-l-2 {
+        grid-column: auto / span 2;        
+    }
+
+    .grid .col-l-3 {
+        grid-column: auto / span 3;        
+    }
+
+    .grid .col-l-4 {
+        grid-column: auto / span 4;        
+    }
+
+    .grid .col-l-6 {
+        grid-column: auto / span 6;        
+    }
+}
+
+@media (max-width: 768px) {
+    .float .col-m-2, .flex .col-m-2 {
+        width: calc(16.66% - 20px);
+    }
+
+    .float .col-m-3, .flex .col-m-3  {
+        width: calc(25% - 20px);
+    }
+
+    .float .col-m-6, .flex .col-m-6  {
+        width: calc(50% - 20px);
+    }
+
+    .float .col-m-8, .flex .col-m-8  {
+        width: calc(66.66% - 20px);
+    }
+
+    .float .col-m-12, .flex .col-m-12 {
+        width: calc(100% - 20px);
+    }
+
+    .grid .col-m-2 {
+        grid-column: auto / span 2;        
+    }
+
+    .grid .col-m-3  {
+        grid-column: auto / span 3;        
+    }
+
+    .grid .col-m-6  {
+        grid-column: auto / span 6;        
+    }
+
+    .grid .col-m-8  {
+        grid-column: auto / span 8;        
+    }
+
+    .grid .col-m-12 {
+        grid-column: auto / span 12;        
+    }
+}
+
+
