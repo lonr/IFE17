@@ -33,7 +33,7 @@ input, select, button {
     height: 20px;
     -moz-appearance: none;
     -webkit-appearance: none;
-    appearance: none;
+    /*appearance: none;*/
 }
 
 header {
