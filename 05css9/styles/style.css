@@ -711,6 +711,13 @@ main {
     display: block;
 }
 
+#detail {
+    width: 250px;
+    height: 100px;
+    border: none;
+    resize: none;
+}
+
 #agreement {
     visibility: hidden;
     vertical-align: middle;
