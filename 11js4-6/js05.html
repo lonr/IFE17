@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <title>IFE JavaScript Task 01</title>
+</head>
+
+<style>
+    body {
+        text-align: center;
+    }
+
+    button:nth-of-type(2n) {
+        margin-right: 2em;
+    }
+
+    ol {
+        height: 100px;
+        padding: 0;
+        line-height: 100px;
+    }
+
+    li {
+        display: inline-block;
+        margin: 0 2px;
+        width: 20px;
+        vertical-align: bottom;
+        color: white;
+        background: red;
+    }
+</style>
+
+<body>
+
+    <input type="number" max="100" min="10" id="num">
+    <button type="button" id="left-in">左侧入</button>
+    <button type="button" id="right-in">右侧入</button>
+    <button type="button" id="left-out">左侧出</button>
+    <button type="button" id="right-out">右侧出</button>
+    <button type="button" id="sort">冒泡</button>
+
+    <div>
+        <ol id="output"></ol>
+    </div>
+
+    <script type="text/javascript">
+        (function () {
+            class Queue {
+                constructor(arr = [], ele) {
+                    this.arr = arr;
+                    this.ele = ele;
+                    this.randomFill();
+                }
+
+                get length() {
+                    return this.arr.length;
+                }
+
+                createLi(data) {
+                    let tempLi = document.createElement('li');
+                    tempLi.style.height = data + 'px';
+                    return tempLi;
+                }
+
+                validate(data) {
+                    if (this.length === 60) {
+                        alert('要超过 60 个数字了');
+                        return false;
+                    }
+                    if (!data || isNaN(data) || data > 100 || data < 10) {
+                        return false;
+                    } else {
+                        return true;
+                    }
+                }
+
+                push(data) {
+                    if (!this.validate(data)) { return; }
+                    this.arr.push(data);
+                    this.ele.append(this.createLi(data));
+                }
+
+                pop() {
+                    if (this.length > 0) {
+                        this.arr.pop();
+                        this.ele.removeChild(this.ele.lastElementChild);
+                    }
+                }
+
+                unshift(data) {
+                    if (!this.validate(data)) { return; }
+                    this.arr.unshift(data);
+                    this.ele.prepend(this.createLi(data));
+                }
+
+                shift() {
+                    if (this.length > 0) {
+                        this.arr.shift();
+                        this.ele.removeChild(this.ele.firstElementChild);
+                    }
+                }
+
+                swap(a, b) {
+                    if (a === b) { return; }
+                    let temp = null;
+                    temp = this.arr[a];
+                    this.arr[a] = this.arr[b];
+                    this.arr[b] = temp;
+
+                    this.ele.querySelectorAll('li')[a].style.height = this.arr[a] + 'px';
+                    this.ele.querySelectorAll('li')[b].style.height = this.arr[b] + 'px';
+                }
+
+                bubbleSort() {
+                    let i = 0;
+                    let j = this.arr.length - 1;
+                    let count = 0;
+                    let timer = setInterval(haofan.bind(this), 20);
+                    function haofan() {
+                        if (j > 1) {
+                            if (i < j) {
+                                if (this.arr[i] > this.arr[i + 1]) {
+                                    this.swap(i, i + 1);
+                                    count++;
+                                }
+                                i++;
+                            } else {
+                                j--;
+                                i = 0;
+                                if (count === 0) {
+                                    clearInterval(timer);
+                                }
+                                count = 0;
+                            }
+                        } else {
+                            clearInterval(timer);
+                        }
+                        console.log('1');
+                    }
+                }
+
+                randomFill() {
+                    for (let i = this.length; i < 20; i++) {
+                        this.push(Math.floor(Math.random() * 91) + 10);
+                    }
+                }
+            }
+
+            let $ = document.querySelector.bind(document);
+            let ele = $('#output');
+            let queue = new Queue([], ele);
+
+            $('#left-in').addEventListener('click', () => {
+                let num = $('#num').value;
+                queue.unshift(num);
+            });
+            $('#left-out').addEventListener('click', () => {
+                queue.shift();
+            });
+            $('#right-in').addEventListener('click', () => {
+                let num = $('#num').value;
+                queue.push(num);
+            });
+            $('#right-out').addEventListener('click', () => {
+                queue.pop();
+            });
+
+            $('#sort').addEventListener('click', () => {
+                queue.bubbleSort();
+            })
+
+        })()
+    </script>
+</body>
+
+</html>

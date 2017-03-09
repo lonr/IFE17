@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <title>IFE JavaScript Task 01</title>
+</head>
+
+<style>
+    body {
+        text-align: center;
+    }
+
+    button:nth-of-type(2n) {
+        margin-right: 2em;
+    }
+
+    li {
+        display: inline-block;
+        margin: 2px;
+        height: 40px;
+        color: white;
+        background: red;
+    }
+
+    em {
+        font-weight: bolder;
+    }
+</style>
+
+<body>
+
+    <textarea></textarea>
+    <button type="button" id="left-in">左侧入</button>
+    <button type="button" id="right-in">右侧入</button>
+    <button type="button" id="left-out">左侧出</button>
+    <button type="button" id="right-out">右侧出</button>
+    <input type="text" id="keyWord"> <button type="button" id="search">查询</button>
+
+    <div>
+        <ol id="output"></ol>
+    </div>
+
+    <script type="text/javascript">
+        'use strict';
+        let $ = selector => document.querySelector(selector);
+        let $$ = selector => document.querySelectorAll(selector);
+        let data = [];
+        let output = $('#output');
+        let getInput = () => $('textarea').value.trim().split(/[^0-9a-zA-Z\u4e00-\u9fa5]+/m);
+        let keyWord = null;
+
+        function render(keyWord) {
+            let temp = '';
+            for (let item of data) {
+                if (keyWord) {
+                    temp += '<li>' + item.replace(new RegExp(keyWord, 'gi'), `<em>${keyWord}</em>`) + '</li>';
+                } else {
+                    temp += '<li>' + item + '</li>';
+                }
+            }
+            output.innerHTML = temp;
+        }
+
+        function onclick(ev) {
+            let inputText = '';
+            switch (ev.target.id) {
+                case 'left-in':
+                    inputText = getInput();
+                    data.unshift(...inputText);
+                    break;
+                case 'left-out':
+                    data.shift();
+                    break;
+                case 'right-in':
+                    inputText = getInput();
+                    data.push(...inputText);
+                    break;
+                case 'right-out':
+                    data.pop();
+                    break;
+                case 'search':
+                    keyWord = $('#keyWord').value;
+                    break;
+            }
+            render(keyWord);
+        }
+
+        $$('button').forEach(btn => btn.addEventListener('click', onclick));
+    </script>
+</body>
+
+</html>

@@ -33,6 +33,10 @@ a {
     color: inherit;
 }
 
+img {
+    vertical-align: bottom;
+}
+
 header {
     position: relative;
     width: 100%;
@@ -85,8 +89,8 @@ main nav ul > li:hover, main nav ul > .focus {
 }
 
 .banner {
-    display: block;
     width: 100%;
+    vertical-align: bottom;
 }
 
 .labels {
@@ -172,19 +176,24 @@ main nav ul > li:hover, main nav ul > .focus {
     display: flex;
 }
 
-.photo {
+.module > div >figure {
     width: 26%;
+}
+
+.photo {
+    display: block;
+    width: 100%;
     border: #FBB22F 1px solid;
 }
 
-.photo + ul {
+.module ul {
     flex: 1;
     display: flex;
     flex-wrap: wrap;
     list-style: none;
 }
 
-.photo + ul > li {
+.module ul > li {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -193,7 +202,7 @@ main nav ul > li:hover, main nav ul > .focus {
     background: #F5F5F5;
 }
 
-.photo + ul > li:nth-child(-n+2) {
+.module ul > li:nth-child(-n+2) {
     margin-bottom: 0.3rem;
 }
 
@@ -204,10 +213,14 @@ main nav ul > li:hover, main nav ul > .focus {
     background: #fff;
 }
 
-.article:nth-of-type(-n+2) img {
+.article:nth-of-type(-n+2) figure {
     flex: none;
     width: 30%;
     margin-right: 0.3rem;
+}
+
+.article:nth-of-type(-n+2) figure img {
+    width: 100%;
 }
 
 .article-right {

@@ -99,7 +99,7 @@ img {
 }
 
 #img2 {
-    background: steelblue;    
+    background: linear-gradient(-45deg, lightblue, steelblue);    
 }
 
 .tablet {

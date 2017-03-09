@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <title>IFE JavaScript Task 01</title>
+</head>
+
+<style>
+    body {
+        text-align: center;
+    }
+
+    button:nth-of-type(2) {
+        margin-right: 2em;
+    }
+
+    li {
+        display: inline-block;
+        margin: 2px;
+        width: 40px;
+        height: 40px;
+        color: white;
+        background: red;
+    }
+</style>
+
+<body>
+
+    <input type="number" id="num"> <button type="button" id="left-in">左侧入</button> <button type="button" id="right-in">右侧入</button>    <button type="button" id="left-out">左侧出</button> <button type="button" id="right-out">右侧出</button>
+
+    <div>
+        <ol id="output"></ol>
+    </div>
+
+    <script type="text/javascript">
+        (function () {
+            'use strict';
+
+            let queue = [];
+            let output = document.querySelector('#output');
+
+            function getNum() {
+                return document.querySelector('#num').value;
+            }
+
+            function newLi(num) {
+                let tempLi = document.createElement('li');
+                tempLi.textContent = num;
+                return tempLi;
+            }
+
+            function onclick(ev) {
+                let num = 0;
+                switch (ev.target.id) {
+                    case 'left-in':
+                        num = getNum();
+                        if (!num || isNaN(num)) { return; };
+                        queue.unshift(num);
+                        output.prepend(newLi(num));
+                        break;
+                    case 'left-out':
+                        queue.shift();
+                        output.removeChild(output.firstElementChild);
+                        break;
+                    case 'right-in':
+                        num = getNum();
+                        if (!num || isNaN(num)) { return; };
+                        queue.push(num);
+                        output.append(newLi(num));
+                        break;
+                    case 'right-out':
+                        queue.pop();
+                        output.removeChild(output.lastElementChild);
+                        break;
+                }
+            }
+
+            document.querySelectorAll('button').forEach(btn => btn.addEventListener('click', onclick));
+        })();
+
+    </script>
+</body>
+
+</html>
