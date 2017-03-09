@@ -11,3 +11,4 @@
 - [任务十二：学习CSS 3的新特性](http://ife.baidu.com/course/detail/id/117)-[demo](https://lonr.github.io/ife17/09css12/index.html)-[代码](https://github.com/lonr/ife17/tree/master/09css12)
 - [任务一~三：零基础JavaScript编码（一~三）](http://ife.baidu.com/college/detail/id/10)-[demo](https://lonr.github.io/ife17/10js1-3/js03.html)-[代码](https://github.com/lonr/ife17/tree/master/10js1-3)
 - [任务四~六：基础JavaScript练习（一~三）](http://ife.baidu.com/college/detail/id/10)-[demo](https://lonr.github.io/ife17/11js4-6/js06.html)-[代码](https://github.com/lonr/ife17/tree/master/11js4-6)
+- [任务七~九：JavaScript和树（一~三）](http://ife.baidu.com/college/detail/id/10)-[demo](https://lonr.github.io/ife17/12js7-9/js09.html)-[代码](https://github.com/lonr/ife17/tree/master/12js7-9)

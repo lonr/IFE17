@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>IFE JavaScript Task 09</title>
+</head>
+
+<style>
+    body {
+        text-align: center;
+    }
+    
+    div {
+        flex: 1;
+        display: flex;
+        box-sizing: border-box;
+        margin: 0 4px;
+        border: solid;
+        padding: 4px;
+        background: #fff;
+    }
+    
+    .root {
+        width: 800px;
+        height: 200px;
+        margin: auto;
+    }
+    
+    .now {
+        background: steelblue;
+    }
+    
+    .selected {
+        background: lightgreen;
+    }
+</style>
+
+<body>
+
+    <p>
+        <button type="button" id="map">map</button>
+        <input type="text" id="input">
+        <button type="button" id="search">搜索</button>
+        <input type="text" id="content">
+        <button type="button" id="append">添加</button>
+        <button type="button" id="remove">删除</button>
+    </p>
+
+    <div class="root">
+        root
+        <div>
+            div1
+            <div>
+                div11
+            </div>
+            <div>
+                div12
+            </div>
+            <div>
+                div13
+            </div>
+        </div>
+        <div>
+            div2
+            <div>
+                div21
+            </div>
+            <div>
+                div22
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        'use strict';
+        // 😞 感觉差太多：1. 怎么“延迟”？async？promise？都不会。。2. 应该如何操作 dom。。。
+        // 还有这个递归呀。。要哭了。。
+
+        let $ = selector => document.querySelector(selector);
+        let $$ = selector => document.querySelectorAll(selector);
+        let queue = [];
+        let eles = [];
+        let result = null;
+        let selected = null;
+
+        function search(ele, target) {
+            if (ele && !result) {
+                eles.push(ele);
+                if (ele.childNodes[0].textContent.indexOf(target) !== -1) {
+                    return result = ele;
+                }
+                queue.push(ele);
+                search(ele.nextElementSibling, target);
+                search(queue.shift().firstElementChild, target);
+            }
+        }
+
+        function show(eles) {
+            let i = 0;
+            let timer = setInterval(() => {
+                if (i > 0) {
+                    eles[i - 1].className = eles[i - 1].className.replace(' now', '');
+                    if (i === eles.length) {
+                        clearInterval(timer);
+                        return;
+                    }
+                }
+                eles[i].className += ' now';
+                i++;
+            }, 500);
+        }
+
+        $('#map').addEventListener('click', ev => {
+            if (eles.length === 0) {
+                search($('.root'));
+            }
+            show(eles);
+        });
+
+        $('#search').addEventListener('click', ev => {
+            eles = [];
+            result = null;
+            let target = $('#input').value.trim();
+            if (target) {
+                search($('.root'), target);
+            }
+            show(eles);
+        });
+
+        $('.root').addEventListener('click', ev => {
+            if (selected) {
+                selected.className = selected.className.replace(' selected', '');
+            }
+            ev.target.className += ' selected';
+            selected = ev.target;
+        });
+
+        $('#remove').addEventListener('click', ev => {
+            if (selected) {
+                selected.parentNode.removeChild(selected);
+            }
+        });
+
+        $('#append').addEventListener('click', ev => {
+            if (selected) {
+                let temp = document.createElement('div');
+                temp.textContent = $('#content').value.trim()
+                selected.appendChild(temp);
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>IFE JavaScript Task 07</title>
+</head>
+
+<style>
+    body {
+        text-align: center;
+    }
+    div {
+        flex: 1;
+        display: flex;
+        box-sizing: border-box;
+        margin: 0 4px;
+        border: solid;
+        padding: 4px;
+        background: #fff;
+    }
+    
+    .root {
+        width: 800px;
+        height: 200px;
+        margin: auto;
+    }
+    
+    .now {
+        background: steelblue;
+    }
+</style>
+
+<body>
+
+    <p>
+        <button type="button" id="preOrder">PreOrder</button>
+    </p>
+
+    <div class="root">
+        <div>
+            <div>
+            </div>
+            <div>
+            </div>
+        </div>
+        <div>
+            <div>
+                <div>
+                </div>
+                <div>
+                </div>
+            </div>
+            <div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        'use strict';
+        let queue = [];
+
+        function preOrder(ele) {
+            if (ele != null) {
+                queue.push(ele);
+                preOrder(ele.firstElementChild);
+                preOrder(ele.lastElementChild);
+            }
+        }
+
+        function show(queue) {
+            let i = 0;
+            let timer = setInterval(() => {
+                if (i > 0) {
+                    queue[i - 1].className = queue[i - 1].className.replace(' now', '');
+                    if (i === queue.length) {
+                        clearInterval(timer);
+                        return;
+                    }
+                }
+                queue[i].className += ' now';
+                i++;
+            }, 500);
+        }
+
+        document.getElementById('preOrder').addEventListener('click', (ev) => {
+            preOrder(document.querySelector('.root'));
+            show(queue);
+        });
+    </script>
+</body>
+
+</html>

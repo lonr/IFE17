@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>IFE JavaScript Task 08</title>
+</head>
+
+<style>
+    body {
+        text-align: center;
+    }
+    
+    div {
+        flex: 1;
+        display: flex;
+        box-sizing: border-box;
+        margin: 0 4px;
+        border: solid;
+        padding: 4px;
+        background: #fff;
+    }
+    
+    .root {
+        width: 800px;
+        height: 200px;
+        margin: auto;
+    }
+    
+    .now {
+        background: steelblue;
+    }
+</style>
+
+<body>
+
+    <p>
+        <button type="button" id="map">map</button> <input type="text" id="input"> <button type="button" id="search">搜索</button>
+    </p>
+
+    <div class="root">
+        root
+        <div>
+            div1
+            <div>
+                div11
+            </div>
+            <div>
+                div12
+            </div>
+            <div>
+                div13
+            </div>
+        </div>
+        <div>
+            div2
+            <div>
+                div21
+            </div>
+            <div>
+                div22
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        'use strict';
+        let queue = [];
+        let result = null;
+
+        function mapEle(ele, target) {
+            if (ele && !result) {
+                queue.push(ele);
+                if (ele.childNodes[0].nodeValue.indexOf(target) !== -1) {
+                    return result = ele;
+                }
+                for (let child of ele.children) {
+                    mapEle(child, target);
+                }
+            }
+        }
+
+        function show(queue) {
+            let i = 0;
+            let timer = setInterval(() => {
+                if (i > 0) {
+                    queue[i - 1].className = queue[i - 1].className.replace(' now', '');
+                    if (i === queue.length) {
+                        clearInterval(timer);
+                        return;
+                    }
+                }
+                queue[i].className += ' now';
+                i++;
+            }, 500);
+        }
+
+        document.getElementById('map').addEventListener('click', (ev) => {
+            if (queue.length === 0) {
+                mapEle(document.querySelector('.root'));
+            }
+            show(queue);
+        });
+
+        document.getElementById('search').addEventListener('click', (ev) => {
+            queue = [];
+            result = null;
+            let target = document.getElementById('input').value.trim();
+            if (target) {
+                mapEle(document.querySelector('.root'), target); 
+            }
+            show(queue);
+        });
+    </script>
+</body>
+
+</html>
